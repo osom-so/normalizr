@@ -2,6 +2,9 @@ require "osom-normalizr/version"
 
 module Osom
   module Normalizr
-    # Your code goes here...
+    module Rails
+      class Engine < ::Rails::Engine
+      end
+    end
   end
 end

@@ -1,0 +1,248 @@
+// --- Headers & paragraphs --- 
+h1, h2, h3, h4, h5, h6{
+  font-weight: normal;
+  line-height: 1em;
+  margin: 0.7em 0 0.3em;
+}
+h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child{
+  margin-top: 0;
+}
+h1{
+  font-size: 2em;
+}
+h2{
+  font-size: 1.8em;
+}
+h3{
+  font-size: 1.6em;
+}
+h4{
+  font-size: 1.4em;
+}
+h5{
+  font-size: 1.2em;
+}
+h6{
+  font-size: 1.15em;
+}
+p{
+  margin: 0.5em 0;
+}
+h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p,
+h1 + ul, h2 + ul, h3 + ul, h4 + ul, h5 + ul, h6 + ul,
+h1 + ol, h2 + ol, h3 + ol, h4 + ol, h5 + ol, h6 + ol{
+  margin-top: 0;
+}
+
+// --- Layout --- 
+.table{
+  display: table;
+  border-collapse: separate;
+  vertical-align: top;
+}
+  .table.full{ width: 100%; }
+
+.tcell{ display: table-cell; vertical-align: top; }
+  .tcell.t5{ width: 5%; min-width: 5%; max-width: 5%; }
+  .tcell.t10{ width: 10%; min-width: 10%; max-width: 10%; }
+  .tcell.t15{ width: 15%; min-width: 15%; max-width: 15%; }
+  .tcell.t20{ width: 20%; min-width: 20%; max-width: 20%; }
+  .tcell.t25{ width: 25%; min-width: 25%; max-width: 25%; }
+  .tcell.t30{ width: 30%; min-width: 30%; max-width: 30%; }
+  .tcell.t33{ width: 33%; min-width: 33%; max-width: 33%; }
+  .tcell.t35{ width: 35%; min-width: 35%; max-width: 35%; }
+  .tcell.t40{ width: 40%; min-width: 40%; max-width: 40%; }
+  .tcell.t45{ width: 45%; min-width: 45%; max-width: 45%; }
+  .tcell.t50{ width: 50%; min-width: 50%; max-width: 50%; }
+  .tcell.t55{ width: 55%; min-width: 55%; max-width: 55%; }
+  .tcell.t60{ width: 60%; min-width: 60%; max-width: 60%; }
+  .tcell.t65{ width: 65%; min-width: 65%; max-width: 65%; }
+  .tcell.t66{ width: 66%; min-width: 66%; max-width: 66%; }
+  .tcell.t70{ width: 70%; min-width: 70%; max-width: 70%; }
+  .tcell.t75{ width: 75%; min-width: 75%; max-width: 75%; }
+  .tcell.t80{ width: 80%; min-width: 80%; max-width: 80%; }
+  .tcell.t85{ width: 85%; min-width: 85%; max-width: 85%; }
+  .tcell.t90{ width: 90%; min-width: 90%; max-width: 90%; }
+  .tcell.t95{ width: 95%; min-width: 95%; max-width: 95%; }
+  .tcell.t100{ width: 100%; min-width: 100%; max-width: 100%; }
+
+.table.top    > .tcell{ vertical-align: top; }
+.table.middle > .tcell{ vertical-align: middle; }
+.table.bottom > .tcell{ vertical-align: bottom; }
+.tcell.top      { vertical-align: top !important; }
+.tcell.middle   { vertical-align: middle !important; }
+.tcell.bottom   { vertical-align: bottom !important; }
+
+.table.tpad > .tcell + .tcell, .tcell.tpad{
+  padding-left: 0.75em;
+}
+
+.inline{
+  display: inline;
+}
+.block{
+  display: block;
+}
+.inline-block, .inlineblock{
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+}
+.rgt{ text-align: right;  }
+.ctr{ text-align: center; }
+.lft{ text-align: left;   }
+
+// --- Lists --- 
+ul, ol{
+  padding-left: 2em;
+}
+ul > li > ul, ul > ul,
+ol > li > ol, ol > ol,
+ol > li > ul, ol > ul,
+ul > li > ol, ul > ol{
+  margin: 0;
+  padding-left: 1em;
+}
+ul.nobullet, ul.nobullet > li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+ul.nobullet > li:before, ul.nobullet > li:after{
+  display: none;
+}
+ul.nolist > li, ol.nolist > li{
+  display: inline;
+}
+ul.seplist > li + li:before, ol.seplist > li + li:before{
+  display: inline;
+  position: static !important;
+  content: '|' !important;
+  color: #eee !important;
+  padding: 0 0.5em;
+}
+
+// --- Forms --- 
+input, textarea{
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  outline: 0;
+  box-shadow: none;
+}
+input[type=text], input[type=password], input[type=email], input[type=search], input[type=tel], input[type=number], .inputtext, textarea, .textarea{
+  font-size: 0.92em;
+  border: 1px solid #ccc;
+  color: #666;
+  border-radius: 2px;
+  padding: 0.3em 0.3em 0.2em;
+  background: #fff;
+}
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=search]:focus, input[type=tel]:focus, input[type=number], .inputtext:focus, textarea:focus, .textarea:focus{
+  color: #333;
+  border-color: #999;
+}
+input.full, .inputtext.full, textarea.full, .textarea.full{
+  width: 100%;
+}
+input.big, .inputtext.big, textarea.big .textarea.big{
+  font-size: 1.3em;
+}
+textarea{
+  min-height: 100px;
+  resize: vertical;
+}
+input:invalid, textarea:invalid{
+  border: 1px solid #922 !important;
+  color: #922 !important;
+  background: #fff !important;
+}
+input.boton{
+  border: 1px solid #999;
+  border-radius: 0.2em;
+  background-color: #eee;
+  color: #333;
+  padding: 0.45em 0.7em;
+  letter-spacing: -0.05em;
+  font-weight: 400;
+}
+  input.boton.nopad{
+    padding: 0.1em 0.5em;
+  }
+  input.boton.importante{
+    font-weight: 800;
+  }
+
+// --- Tables --- 
+table.full{
+  width: 100%;
+}
+table.zebra > tbody > tr:nth-child(even), table.zebra > tr:nth-child(even){
+  background: #f9f9f9;
+}
+table.zebra > tbody > tr:hover, table.zebra > tr:hover{
+  background: #fefefe;
+}
+
+// --- Images --- 
+img, figure{
+  padding: 0.5em;
+  margin: 0.25em 0.5em;
+}
+img.nopad, figure.nopad{
+  margin: 0;
+  padding: 0;
+}
+img.rgt, figure.rgt{
+  float: right;
+}
+img.lft, figure.lft{
+  float: left;
+}
+figure img{
+  padding: 0;
+  margin: 0;
+  float: none !important;
+}
+figure figcaption{
+  padding: 0.2em 0 0.3em;
+  color: #555;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+// --- Utilities --- 
+.uc, .user-content{ word-wrap: break-word; }
+.oneline, .nowrap{ white-space: nowrap; }
+.clickable{
+  cursor: pointer;
+  cursor: hand;
+}
+
+// --- Fixes --- 
+.lt-ie9 .table, .lt-ie8 .table, .ie8 .table, .ie7 .table{
+  white-space: nowrap;
+  overflow: hidden;
+}
+.lt-ie9 .tcell, .lt-ie8 .tcell, .ie8 .tcell, .ie7 .tcell{
+  display: inline !important;
+  display: inline-block !important;
+  zoom: 1;
+  white-space: normal;
+  margin-right: -0.5%;
+}
+.lt-ie8 .tcell, .ie7 .tcell{
+  display: inline !important;
+}
+.lt-ie8 .seplist > li, .ie7 .seplist > li{
+  border-left: 1px solid #aaa;
+  margin-left: 0.5em;
+  padding-left: 0.5em;
+}
+.lt-ie8 .seplist > li:first-child, .ie7 .seplist > li:first-child{
+  border-left: 0;
+  margin-left: 0;
+  padding-left: 0;
+}

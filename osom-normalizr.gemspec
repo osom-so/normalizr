@@ -7,13 +7,11 @@ Gem::Specification.new do |gem|
   gem.name          = "osom-normalizr"
   gem.version       = Osom::Normalizr::VERSION
   gem.authors       = ["Rafael Soto"]
-  gem.email         = ["fael.soto@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.email         = ["rafael@osom.so"]
+  gem.description   = %q{osom normalizr}
+  gem.summary       = %q{osom normalizr}
   gem.homepage      = ""
 
-  gem.files         = `git ls-files`.split($/)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.files         = Dir["{lib,vendor}/**/*"] + ["LICENSE.txt", "README.md"]
   gem.require_paths = ["lib"]
 end
