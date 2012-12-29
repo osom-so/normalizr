@@ -1,4 +1,5 @@
 require "osom-normalizr/version"
+require "osom-normalizr/railtie" if defined?(Rails)
 
 module Osom
   module Normalizr
