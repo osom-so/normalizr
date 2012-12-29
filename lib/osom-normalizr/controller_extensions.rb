@@ -1,7 +1,10 @@
 module Osom::Normalizr
   module ControllerExtensions
     def self.included(base)
-      base.send(:include, InstanceMethods)
+      base.send :include, InstanceMethods
+
+      base.send :helper_method, :mini_hash
+      base.send :helper_method, :check_minihash
     end
 
     module InstanceMethods
