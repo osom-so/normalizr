@@ -12,7 +12,6 @@ module Osom::Normalizr
   end
 end
 
-
 class OsomFormBuilder < ActionView::Helpers::FormBuilder
   delegate :capture, :content_tag, :tag, to: :@template
   
@@ -29,11 +28,20 @@ class OsomFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def labelbrinput(label, name, label_args, field_args)
-    "#{label(name, label, label_args)}<br>#{text_field(name, field_args)}".html_safe
+    """
+    #{error_for(self.object, name)}
+    #{label(name, label, label_args)}
+    <br>
+    #{text_field(name, field_args)}
+    """.html_safe
   end
 
   def labelinput(label, name, label_args, field_args)
-    "#{label(name, label, label_args)}#{text_field(name, field_args)}".html_safe
+    """
+    #{error_for(self.object, name)}
+    #{label(name, label, label_args)}
+    #{text_field(name, field_args)}
+    """.html_safe
   end
 
   def text_area(name,*args)
@@ -53,7 +61,13 @@ class OsomFormBuilder < ActionView::Helpers::FormBuilder
         field_args = args.first
       end
     end
-    "#{label(name, label, label_args)}<br>#{text_area(name, field_args)}".html_safe
+
+    """
+    #{error_for(self.object, name)}
+    #{label(name, label, label_args)}
+    <br>
+    #{text_area(name, field_args)}
+    """.html_safe
   end
 
   def submit(name, *args)
@@ -68,6 +82,13 @@ class OsomFormBuilder < ActionView::Helpers::FormBuilder
     args.first[:class] = "" if args.first[:class].nil?
     args.first[:class] += " importante"
     submit(name, *args)
+  end
+
+  def error_for model, field
+    if model and model.kind_of?(Object) and model.errors[field].any?
+      error = model.errors[field].first
+      "<div><span class='error'><strong>Error: </strong><span class='mensaje'>#{error}</span></span></div>".html_safe
+    end
   end
 
   def method_missing(name, *args)
