@@ -12,25 +12,28 @@ module Osom::Normalizr
   end
 end
 
+
 class OsomFormBuilder < ActionView::Helpers::FormBuilder
   delegate :capture, :content_tag, :tag, to: :@template
+  
   def text_field(name,*args)
     args = [{}] if args.first.nil?
     args.first[:size] = nil if args.first[:size].nil?
-    args.first[:class] = "" if args.first[:class].nil?
-    args.first[:class] += " inputtext"
+
+    args.first[:class] = (args.first[:class] || "").split
+    args.first[:class] << "input#{args.first[:type]}" unless args.first[:type].nil?
+    args.first[:class] << "inputtext"
+    args.first[:class] = args.first[:class].uniq.reverse.join(" ")
+
     super(name, *args)
   end
 
-  def labelbrtext(label, name, *args)
-    field_args ||= (args.first && args.first[:input])
-    label_args = (args.first && args.first[:label]) || {}
-    unless args.first.nil?
-      unless args.first.include? :input or args.first.include? :label
-        field_args = args.first
-      end
-    end
+  def labelbrinput(label, name, label_args, field_args)
     "#{label(name, label, label_args)}<br>#{text_field(name, field_args)}".html_safe
+  end
+
+  def labelinput(label, name, label_args, field_args)
+    "#{label(name, label, label_args)}#{text_field(name, field_args)}".html_safe
   end
 
   def text_area(name,*args)
@@ -43,7 +46,7 @@ class OsomFormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def labelbrtextarea(label, name, *args)
-    field_args ||= (args.first && args.first[:input])
+    field_args = (args.first && args.first[:input])
     label_args = (args.first && args.first[:label]) || {}
     unless args.first.nil?
       unless args.first.include? :input or args.first.include? :label
@@ -65,5 +68,23 @@ class OsomFormBuilder < ActionView::Helpers::FormBuilder
     args.first[:class] = "" if args.first[:class].nil?
     args.first[:class] += " importante"
     submit(name, *args)
+  end
+
+  def method_missing(name, *args)
+    if (field_type = /^label(br)?([a-z]+)$/.match(name))
+      field_args = (args.at(2) && args.at(2)[:input])
+      label_args = (args.at(2) && args.at(2)[:label]) || {}
+      unless args.at(2).nil?
+        unless args.at(2).include? :input or args.at(2).include? :label
+          field_args = args.at(2)
+        end
+      end
+
+      field_args[:type] = field_type[2] unless field_args[:type]
+
+      send("label#{field_type[1]}input", args.at(0), args.at(1), label_args, field_args)
+    else
+      super(name)
+    end
   end
 end
