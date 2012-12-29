@@ -1,0 +1,58 @@
+// Lists
+@mixin nobullet{
+  &, & > li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  & > li:before, & > li:after{
+    display: none;
+  }
+}
+
+@mixin nolist{
+  @include nobullet;
+  & > li{
+    display: inline;
+  }
+}
+
+@mixin seplist{
+  @include nobullet;
+  > li + li:before{
+    display: inline;
+    position: static !important;
+    content: '|' !important;
+    color: #eee !important;
+    padding: 0 0.5em;
+  }
+}
+
+// Utilities
+@mixin inlineblock{
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+}
+
+@mixin uc{
+  word-wrap: break-word;
+}
+@mixin oneline{
+  white-space: nowrap;
+}
+@mixin nowrap{
+  white-space: nowrap;
+}
+@mixin clickable{
+  cursor: pointer;
+  cursor: hand;
+}
+
+@mixin allwidth($width){
+  width: $width;
+  min-width: $width;
+  max-width: $width;
+}

@@ -1,3 +1,5 @@
+@import "mixins";
+
 // --- Headers & paragraphs --- 
 h1, h2, h3, h4, h5, h6{
   font-weight: normal;
@@ -39,39 +41,48 @@ h1 + ol, h2 + ol, h3 + ol, h4 + ol, h5 + ol, h6 + ol{
   display: table;
   border-collapse: separate;
   vertical-align: top;
+  &.full{
+    width: 100%;
+  }
 }
-  .table.full{ width: 100%; }
 
-.tcell{ display: table-cell; vertical-align: top; }
-  .tcell.t5{ width: 5%; min-width: 5%; max-width: 5%; }
-  .tcell.t10{ width: 10%; min-width: 10%; max-width: 10%; }
-  .tcell.t15{ width: 15%; min-width: 15%; max-width: 15%; }
-  .tcell.t20{ width: 20%; min-width: 20%; max-width: 20%; }
-  .tcell.t25{ width: 25%; min-width: 25%; max-width: 25%; }
-  .tcell.t30{ width: 30%; min-width: 30%; max-width: 30%; }
-  .tcell.t33{ width: 33%; min-width: 33%; max-width: 33%; }
-  .tcell.t35{ width: 35%; min-width: 35%; max-width: 35%; }
-  .tcell.t40{ width: 40%; min-width: 40%; max-width: 40%; }
-  .tcell.t45{ width: 45%; min-width: 45%; max-width: 45%; }
-  .tcell.t50{ width: 50%; min-width: 50%; max-width: 50%; }
-  .tcell.t55{ width: 55%; min-width: 55%; max-width: 55%; }
-  .tcell.t60{ width: 60%; min-width: 60%; max-width: 60%; }
-  .tcell.t65{ width: 65%; min-width: 65%; max-width: 65%; }
-  .tcell.t66{ width: 66%; min-width: 66%; max-width: 66%; }
-  .tcell.t70{ width: 70%; min-width: 70%; max-width: 70%; }
-  .tcell.t75{ width: 75%; min-width: 75%; max-width: 75%; }
-  .tcell.t80{ width: 80%; min-width: 80%; max-width: 80%; }
-  .tcell.t85{ width: 85%; min-width: 85%; max-width: 85%; }
-  .tcell.t90{ width: 90%; min-width: 90%; max-width: 90%; }
-  .tcell.t95{ width: 95%; min-width: 95%; max-width: 95%; }
-  .tcell.t100{ width: 100%; min-width: 100%; max-width: 100%; }
+.tcell{
+  display: table-cell;
+  vertical-align: top;
+  &.t5{   @include allwidth(5%);   }
+  &.t10{  @include allwidth(10%);  }
+  &.t15{  @include allwidth(15%);  }
+  &.t20{  @include allwidth(20%);  }
+  &.t25{  @include allwidth(25%);  }
+  &.t30{  @include allwidth(30%);  }
+  &.t33{  @include allwidth(33%);  }
+  &.t35{  @include allwidth(35%);  }
+  &.t40{  @include allwidth(40%);  }
+  &.t45{  @include allwidth(45%);  }
+  &.t50{  @include allwidth(50%);  }
+  &.t55{  @include allwidth(55%);  }
+  &.t60{  @include allwidth(60%);  }
+  &.t65{  @include allwidth(65%);  }
+  &.t66{  @include allwidth(66%);  }
+  &.t70{  @include allwidth(70%);  }
+  &.t75{  @include allwidth(75%);  }
+  &.t80{  @include allwidth(80%);  }
+  &.t85{  @include allwidth(85%);  }
+  &.t90{  @include allwidth(90%);  }
+  &.t95{  @include allwidth(95%);  }
+  &.t100{ @include allwidth(100%); }
+}
 
-.table.top    > .tcell{ vertical-align: top; }
-.table.middle > .tcell{ vertical-align: middle; }
-.table.bottom > .tcell{ vertical-align: bottom; }
-.tcell.top      { vertical-align: top !important; }
-.tcell.middle   { vertical-align: middle !important; }
-.tcell.bottom   { vertical-align: bottom !important; }
+.table{
+  &.top    > .tcell{ vertical-align: top; }
+  &.middle > .tcell{ vertical-align: middle; }
+  &.bottom > .tcell{ vertical-align: bottom; }
+}
+.tcell{
+  &.top      { vertical-align: top !important; }
+  &.middle   { vertical-align: middle !important; }
+  &.bottom   { vertical-align: bottom !important; }
+}
 
 .table.tpad > .tcell + .tcell, .tcell.tpad{
   padding-left: 0.75em;
@@ -84,11 +95,7 @@ h1 + ol, h2 + ol, h3 + ol, h4 + ol, h5 + ol, h6 + ol{
   display: block;
 }
 .inline-block, .inlineblock{
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: top;
-  zoom: 1;
-  *display: inline;
+  @include inlineblock;
 }
 .rgt{ text-align: right;  }
 .ctr{ text-align: center; }
@@ -105,23 +112,14 @@ ul > li > ol, ul > ol{
   margin: 0;
   padding-left: 1em;
 }
-ul.nobullet, ul.nobullet > li{
-  margin: 0;
-  padding: 0;
-  list-style: none;
+ul.nobullet{
+  @include nobullet;
 }
-ul.nobullet > li:before, ul.nobullet > li:after{
-  display: none;
+ul.nolist, ol.nolist{
+  @include nolist;
 }
-ul.nolist > li, ol.nolist > li{
-  display: inline;
-}
-ul.seplist > li + li:before, ol.seplist > li + li:before{
-  display: inline;
-  position: static !important;
-  content: '|' !important;
-  color: #eee !important;
-  padding: 0 0.5em;
+ul.seplist, ol.seplist{
+  @include seplist;
 }
 
 // --- Forms --- 
@@ -132,7 +130,7 @@ input, textarea{
   outline: 0;
   box-shadow: none;
 }
-input[type=text], input[type=password], input[type=email], input[type=search], input[type=tel], input[type=number], .inputtext, textarea, .textarea{
+.inputtext, textarea, .textarea{
   font-size: 0.92em;
   border: 1px solid #ccc;
   color: #666;
@@ -140,7 +138,7 @@ input[type=text], input[type=password], input[type=email], input[type=search], i
   padding: 0.3em 0.3em 0.2em;
   background: #fff;
 }
-input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=search]:focus, input[type=tel]:focus, input[type=number], .inputtext:focus, textarea:focus, .textarea:focus{
+.inputtext:focus, textarea:focus, .textarea:focus{
   color: #333;
   border-color: #999;
 }
@@ -214,11 +212,14 @@ figure figcaption{
 }
 
 // --- Utilities --- 
-.uc, .user-content{ word-wrap: break-word; }
-.oneline, .nowrap{ white-space: nowrap; }
+.uc, .user-content{
+  @include uc;
+}
+.oneline, .nowrap{
+  @include nowrap;
+}
 .clickable{
-  cursor: pointer;
-  cursor: hand;
+  @include clickable;
 }
 
 // --- Fixes --- 
