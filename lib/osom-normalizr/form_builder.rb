@@ -15,16 +15,18 @@ end
 class OsomFormBuilder < ActionView::Helpers::FormBuilder
   delegate :capture, :content_tag, :tag, to: :@template
   
-  def text_field(name,*args)
-    args = [{}] if args.first.nil?
-    args.first[:size] = nil if args.first[:size].nil?
+  %w( text_field phone_field password_field email_field number_field ).each do |method_name|
+    define_method method_name.to_sym do |field, *args|
+      args = [{}] if args.first.nil?
+      args.first[:size] = nil if args.first[:size].nil?
 
-    args.first[:class] = (args.first[:class] || "").split
-    args.first[:class] << "input#{args.first[:type]}" unless args.first[:type].nil?
-    args.first[:class] << "inputtext"
-    args.first[:class] = args.first[:class].uniq.reverse.join(" ")
+      args.first[:class] = (args.first[:class] || "").split
+      args.first[:class] << "input#{method_name[/([a-z]*)/]}"
+      args.first[:class] << "inputtext"
+      args.first[:class] = args.first[:class].uniq.reverse.join(" ")
 
-    super(name, *args)
+      super(field, *args)
+    end
   end
 
   def labelbrinput(label, name, label_args={}, field_args={})
