@@ -27,7 +27,7 @@ class OsomFormBuilder < ActionView::Helpers::FormBuilder
     super(name, *args)
   end
 
-  def labelbrinput(label, name, label_args, field_args)
+  def labelbrinput(label, name, label_args={}, field_args={})
     """
     #{error_for(self.object, name)}
     #{label(name, label, label_args)}
@@ -36,7 +36,7 @@ class OsomFormBuilder < ActionView::Helpers::FormBuilder
     """.html_safe
   end
 
-  def labelinput(label, name, label_args, field_args)
+  def labelinput(label, name, label_args={}, field_args={})
     """
     #{error_for(self.object, name)}
     #{label(name, label, label_args)}
@@ -93,7 +93,7 @@ class OsomFormBuilder < ActionView::Helpers::FormBuilder
 
   def method_missing(name, *args)
     if (field_type = /^label(br)?([a-z]+)$/.match(name))
-      field_args = (args.at(2) && args.at(2)[:input])
+      field_args = (args.at(2) && args.at(2)[:input]) || {}
       label_args = (args.at(2) && args.at(2)[:label]) || {}
       unless args.at(2).nil?
         unless args.at(2).include? :input or args.at(2).include? :label
