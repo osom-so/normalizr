@@ -199,12 +199,17 @@ img.rgt, figure.rgt{
 img.lft, figure.lft{
   float: left;
 }
+figure{
+  display: table;
+}
 figure img{
   padding: 0;
   margin: 0;
   float: none !important;
 }
 figure figcaption{
+  display: table-caption;
+  caption-side: bottom;
   padding: 0.2em 0 0.3em;
   color: #555;
   font-size: 0.9em;

@@ -51,13 +51,3 @@
 .table.for-mobile.top    > .tcell{ vertical-align: top; }
 .table.for-mobile.middle > .tcell{ vertical-align: middle; }
 .table.for-mobile.bottom > .tcell{ vertical-align: bottom; }
-
-input[type=text], input[type=password], input[type=email], input[type=search], input[type=tel], input[type=number], .inputtext, textarea, .textarea{
-  width: 195px;
-  font-size: 1.3em;
-  padding: 0.45em 0.3em 0.3em;
-}
-input.boton{
-  font-size: 1.2em;
-  padding: 0.67em 0.7em;
-}
